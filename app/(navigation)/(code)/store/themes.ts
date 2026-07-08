@@ -33,6 +33,8 @@ import ElevenLabsLogo from "../assets/elevenlabs.svg";
 import ElevenLabsLogoUrl from "../assets/elevenlabs.svg?url";
 import ResendLogo from "../assets/resend.svg";
 import ResendLogoUrl from "../assets/resend.svg?url";
+import E2bLogo from "../assets/e2b.svg";
+import E2bLogoUrl from "../assets/e2b.svg?url";
 import BrowserbaseLogo from "../assets/browserbase.svg";
 import BrowserbaseLogoUrl from "../assets/browserbase.svg?url";
 import NuxtLogo from "../assets/nuxt.svg";
@@ -553,6 +555,41 @@ export const THEMES: { [index: string]: Theme } = {
         highlightBorder: "hsla(240, 100%, 78%, 0.45)",
         diffInserted: "#a1ffe0",
         diffDeleted: "#ff8080",
+      }),
+    },
+  },
+  e2b: {
+    id: "e2b",
+    name: "E2B",
+    background: {
+      from: "#ff3001",
+      to: "#ff3001",
+    },
+    icon: E2bLogo,
+    iconUrl: E2bLogoUrl,
+    font: "commit-mono",
+    partner: true,
+    lineNumbers: true,
+    syntax: {
+      dark: convertToShikiTheme({
+        foreground: "#ffffff",
+        comment: "#585858",
+        keyword: "#FF752F",
+        constant: "#FFF",
+        parameter: "#ffffff",
+        property: "#ffffff",
+        function: "#FDB44D",
+        number: "#FDB44D",
+        objectLiteral: "#ffffff",
+        link: "#ffffff",
+        string: "#DB445A",
+        stringExpression: "#DB445A",
+        punctuation: "#ffffff",
+        highlight: "rgba(219,68,90, 0.4)",
+        highlightHover: "rgba(219,68,90, 0.2)",
+        highlightBorder: "#DB445A",
+        diffInserted: "#ffffff",
+        diffDeleted: "#DB445A",
       }),
     },
   },
