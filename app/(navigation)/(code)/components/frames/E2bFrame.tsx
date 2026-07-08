@@ -28,6 +28,7 @@ const E2bFrame = () => {
       style={{ padding }}
     >
       {!showBackground && <div data-ignore-in-export className={sharedStyles.transparentPattern}></div>}
+      {showBackground && <div className={styles.background}></div>}
       <div className={styles.window}>
         <div className={styles.header}>
           <div className={classNames(sharedStyles.fileName, styles.fileName)} data-value={fileName}>
