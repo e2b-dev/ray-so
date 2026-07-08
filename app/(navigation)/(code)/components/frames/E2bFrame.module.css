@@ -1,16 +1,32 @@
 .frame {
-  --frame-background: hsla(0, 0%, 0%, 0.88);
+  --frame-background: #121212;
   --selection-background: rgba(219, 68, 90, 0.4);
   --selection-text-color: #ffffff;
-  --frame-header-background: hsla(0, 0%, 0%, 0.9);
-  --frame-border: hsla(0, 100%, 100%, 0.16);
+  --frame-header-background: #0a0a0a;
+  --frame-border: hsla(0, 0%, 100%, 0.1);
   --frame-border-radius: 8px;
   --frame-text-color: hsl(0, 0%, 98%);
 
   &.withBackground {
-    background-image: url("../../assets/e2b/e2b-pattern.png") !important;
-    background-position: center;
-    background-size: cover;
+    position: relative;
+    overflow: hidden;
+    background-color: #ff3001;
+  }
+
+  &.withBackground::after {
+    position: absolute;
+    z-index: 0;
+    top: -5%;
+    right: -5%;
+    width: 82%;
+    height: 82%;
+    background-image: url("../../assets/e2b/mask-group.png");
+    background-position: top right;
+    background-repeat: no-repeat;
+    background-size: contain;
+    content: "";
+    mix-blend-mode: multiply;
+    pointer-events: none;
   }
 
   &::selection {
@@ -19,9 +35,9 @@
   }
 
   &.darkMode {
-    --frame-background: hsla(0, 0%, 0%, 0.88);
-    --frame-header-background: hsla(0, 0%, 0%, 0.9);
-    --frame-border: hsla(0, 100%, 100%, 0.16);
+    --frame-background: #121212;
+    --frame-header-background: #0a0a0a;
+    --frame-border: hsla(0, 0%, 100%, 0.1);
     --frame-text-color: hsl(0, 0%, 98%);
     --selection-background: rgba(219, 68, 90, 0.4);
     --selection-text-color: #ffffff;
