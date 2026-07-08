@@ -13,22 +13,6 @@
     background-color: #ff3001;
   }
 
-  &.withBackground::after {
-    position: absolute;
-    z-index: 0;
-    top: -5%;
-    right: -5%;
-    width: 82%;
-    height: 82%;
-    background-image: url("../../assets/e2b/mask-group.png");
-    background-position: top right;
-    background-repeat: no-repeat;
-    background-size: contain;
-    content: "";
-    mix-blend-mode: multiply;
-    pointer-events: none;
-  }
-
   &::selection {
     background: var(--selection-background);
     color: var(--selection-text-color);
@@ -42,6 +26,22 @@
     --selection-background: rgba(219, 68, 90, 0.4);
     --selection-text-color: #ffffff;
   }
+}
+
+/* Real element instead of ::after so html-to-image inlines the image on export */
+.background {
+  position: absolute;
+  z-index: 0;
+  top: -5%;
+  right: -5%;
+  width: 82%;
+  height: 82%;
+  background-image: url("../../assets/e2b/mask-group.png");
+  background-position: top right;
+  background-repeat: no-repeat;
+  background-size: contain;
+  mix-blend-mode: multiply;
+  pointer-events: none;
 }
 
 .window {
