@@ -75,6 +75,9 @@ type ShikiSyntaxObject = {
   highlightHover?: string;
   diffDeleted?: string;
   diffInserted?: string;
+  /* colours for the keywordRules below; unset, they fall back to keyword */
+  declaration?: string;
+  operator?: string;
 };
 
 function convertToShikiTheme(syntaxObject: ShikiSyntaxObject): CSSProperties {
@@ -101,6 +104,8 @@ function convertToShikiTheme(syntaxObject: ShikiSyntaxObject): CSSProperties {
     "--ray-token-diff-deleted": syntaxObject.diffDeleted,
     "--ray-token-diff-inserted": syntaxObject.diffInserted,
     "--ray-token-object-literal": syntaxObject.objectLiteral,
+    "--ray-token-declaration": syntaxObject.declaration,
+    "--ray-token-operator": syntaxObject.operator,
   } as CSSProperties;
 }
 
@@ -119,6 +124,12 @@ export type Theme = {
   lineNumbers?: boolean;
   lineNumbersToggleable?: boolean;
   syntax: { light: CSSProperties; dark?: CSSProperties } | { light?: CSSProperties; dark: CSSProperties };
+  /**
+   * Optional word rules on top of the css-variables theme, which gives every keyword one colour.
+   * Keyword tokens whose text is in `declarations` (const, async, function…) take --ray-token-declaration;
+   * with `operators`, keyword tokens made only of operator characters (= => && !==) take --ray-token-operator.
+   */
+  keywordRules?: { declarations?: string[]; operators?: boolean };
 };
 
 export const THEMES: { [index: string]: Theme } = {
@@ -571,6 +582,35 @@ export const THEMES: { [index: string]: Theme } = {
     font: "commit-mono",
     partner: true,
     lineNumbers: true,
+    // E2B colour system v0.18 word rules: declarations neutral 10, operators neutral 8
+    keywordRules: {
+      declarations: [
+        "const",
+        "let",
+        "var",
+        "function",
+        "async",
+        "class",
+        "interface",
+        "type",
+        "enum",
+        "namespace",
+        "declare",
+        "abstract",
+        "extends",
+        "implements",
+        "static",
+        "readonly",
+        "private",
+        "public",
+        "protected",
+        "get",
+        "set",
+        "def",
+        "lambda",
+      ],
+      operators: true,
+    },
     syntax: {
       // E2B code roles (colour system v0.18), the same on the console, docs, website and blog:
       // keywords Code Orange, functions Code Purple, constants blue 11, strings blue 12, the rest neutral steps
@@ -588,6 +628,8 @@ export const THEMES: { [index: string]: Theme } = {
         string: "#C2E6FF", // code-string
         stringExpression: "#C2E6FF", // code-string
         punctuation: "#8A8A8A", // code-punctuation
+        declaration: "#D4D4D4", // code-declaration
+        operator: "#8A8A8A", // code-operator
         highlight: "rgba(255, 255, 255, 0.08)",
         highlightHover: "rgba(255, 255, 255, 0.05)",
         highlightBorder: "#3D3D3D",
