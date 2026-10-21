@@ -561,10 +561,10 @@ export const THEMES: { [index: string]: Theme } = {
   e2b: {
     id: "e2b",
     name: "E2B",
-    // E2B colour system v0.18: black canvas, orange only in the corner dither (E2bFrame)
+    // E2B colour system v0.18: Fire Orange canvas under the dither cover image (E2bFrame)
     background: {
-      from: "#000000",
-      to: "#000000",
+      from: "#FF3001",
+      to: "#FF3001",
     },
     icon: E2bLogo,
     iconUrl: E2bLogoUrl,
