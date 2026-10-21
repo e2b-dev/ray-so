@@ -561,9 +561,10 @@ export const THEMES: { [index: string]: Theme } = {
   e2b: {
     id: "e2b",
     name: "E2B",
+    // E2B colour system v0.18: black canvas, orange only in the corner dither (E2bFrame)
     background: {
-      from: "#ff3001",
-      to: "#ff3001",
+      from: "#000000",
+      to: "#000000",
     },
     icon: E2bLogo,
     iconUrl: E2bLogoUrl,
@@ -571,25 +572,27 @@ export const THEMES: { [index: string]: Theme } = {
     partner: true,
     lineNumbers: true,
     syntax: {
+      // E2B code roles (colour system v0.18), the same on the console, docs, website and blog:
+      // keywords Code Orange, functions Code Purple, constants blue 11, strings blue 12, the rest neutral steps
       dark: convertToShikiTheme({
-        foreground: "#ffffff",
-        comment: "#585858",
-        keyword: "#DB445A",
-        constant: "#FFF",
-        parameter: "#ffffff",
-        property: "#ffffff",
-        function: "#FDB44D",
-        number: "#FDB44D",
-        objectLiteral: "#ffffff",
-        link: "#ffffff",
-        string: "#FF752F",
-        stringExpression: "#FF752F",
-        punctuation: "#ffffff",
-        highlight: "rgba(219,68,90, 0.4)",
-        highlightHover: "rgba(219,68,90, 0.2)",
-        highlightBorder: "#DB445A",
-        diffInserted: "#ffffff",
-        diffDeleted: "#DB445A",
+        foreground: "#F4F4F4", // code-text
+        comment: "#8A8A8A", // code-comment
+        keyword: "#FF795B", // code-keyword
+        constant: "#70B8FF", // code-constant
+        parameter: "#E6E6E6", // code-parameter
+        property: "#F4F4F4", // code-text
+        function: "#B57CFF", // code-function
+        number: "#70B8FF", // code-constant
+        objectLiteral: "#F4F4F4", // code-text
+        link: "#70B8FF", // code-constant
+        string: "#C2E6FF", // code-string
+        stringExpression: "#C2E6FF", // code-string
+        punctuation: "#8A8A8A", // code-punctuation
+        highlight: "rgba(255, 255, 255, 0.08)",
+        highlightHover: "rgba(255, 255, 255, 0.05)",
+        highlightBorder: "#3D3D3D",
+        diffInserted: "#3DD68C",
+        diffDeleted: "#FE6270",
       }),
     },
   },
