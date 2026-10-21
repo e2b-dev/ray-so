@@ -7,6 +7,8 @@ import { highlightedLinesAtom, highlighterAtom, loadingLanguageAtom } from "../s
 import { useAtom, useAtomValue, useSetAtom } from "jotai";
 import { themeDarkModeAtom, themeAtom } from "../store/themes";
 
+const OPERATOR = /^[=+\-*/%<>!&|?:^~.]+$/;
+
 type PropTypes = {
   selectedLanguage: Language | null;
   code: string;
@@ -50,6 +52,20 @@ const HighlightedCode: React.FC<PropTypes> = ({ selectedLanguage, code }) => {
               node.properties["data-line"] = line;
               if (highlightedLines.includes(line)) this.addClassToHast(node, "highlighted-line");
             },
+            // theme word rules: split declarations and operators out of the single keyword colour
+            span(node) {
+              const rules = theme.keywordRules;
+              if (!rules || !String(node.properties.style ?? "").includes("token-keyword")) return;
+              const text = node.children
+                .map((child) => (child.type === "text" ? child.value : ""))
+                .join("")
+                .trim();
+              if (rules.declarations?.includes(text)) {
+                node.properties.style = "color: var(--ray-token-declaration, var(--ray-token-keyword))";
+              } else if (rules.operators && OPERATOR.test(text)) {
+                node.properties.style = "color: var(--ray-token-operator, var(--ray-token-keyword))";
+              }
+            },
           },
         ],
       });
@@ -58,7 +74,16 @@ const HighlightedCode: React.FC<PropTypes> = ({ selectedLanguage, code }) => {
     generateHighlightedHtml().then((newHtml) => {
       setHighlightedHtml(newHtml);
     });
-  }, [code, selectedLanguage, highlighter, setIsLoadingLanguage, setHighlightedHtml, highlightedLines, themeName]);
+  }, [
+    code,
+    selectedLanguage,
+    highlighter,
+    setIsLoadingLanguage,
+    setHighlightedHtml,
+    highlightedLines,
+    themeName,
+    theme,
+  ]);
 
   return (
     <div
