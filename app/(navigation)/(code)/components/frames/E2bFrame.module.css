@@ -1,16 +1,17 @@
+/* E2B colour system v0.18 (github.com/e2b-dev, design/color-system): neutral steps for the window, orange only in the dither */
 .frame {
-  --frame-background: #121212;
-  --selection-background: rgba(219, 68, 90, 0.4);
-  --selection-text-color: #ffffff;
-  --frame-header-background: #0a0a0a;
-  --frame-border: hsla(0, 0%, 100%, 0.1);
+  --frame-background: #0a0a0a; /* surface, neutral 2 */
+  --selection-background: rgba(255, 255, 255, 0.16);
+  --selection-text-color: #f4f4f4;
+  --frame-header-background: #0a0a0a; /* surface, neutral 2 */
+  --frame-border: #1f1f1f; /* line-subtle, neutral 4 */
   --frame-border-radius: 8px;
-  --frame-text-color: hsl(0, 0%, 98%);
+  --frame-text-color: #f4f4f4; /* heading, neutral 12 */
 
   &.withBackground {
     position: relative;
     overflow: hidden;
-    background-color: #ff3001;
+    background-color: #000000; /* page, neutral 1 */
   }
 
   &::selection {
@@ -19,12 +20,12 @@
   }
 
   &.darkMode {
-    --frame-background: #121212;
+    --frame-background: #0a0a0a;
     --frame-header-background: #0a0a0a;
-    --frame-border: hsla(0, 0%, 100%, 0.1);
-    --frame-text-color: hsl(0, 0%, 98%);
-    --selection-background: rgba(219, 68, 90, 0.4);
-    --selection-text-color: #ffffff;
+    --frame-border: #1f1f1f;
+    --frame-text-color: #f4f4f4;
+    --selection-background: rgba(255, 255, 255, 0.16);
+    --selection-text-color: #f4f4f4;
   }
 }
 
@@ -36,11 +37,10 @@
   right: -5%;
   width: 82%;
   height: 82%;
-  background-image: url("../../assets/e2b/mask-group.png");
+  background-image: url("../../assets/e2b/dither-deep.png"); /* deep orange (orange 11 light, #A03017) dots on transparent */
   background-position: top right;
   background-repeat: no-repeat;
   background-size: contain;
-  mix-blend-mode: multiply;
   pointer-events: none;
 }
 
@@ -112,7 +112,7 @@
 
 .language {
   height: 40px;
-  color: #898989;
+  color: #8a8a8a; /* muted, neutral 8 */
   font-size: 14px;
   line-height: 40px;
 }
